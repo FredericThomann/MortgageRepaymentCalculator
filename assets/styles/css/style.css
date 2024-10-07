@@ -283,6 +283,7 @@ input, button {
 .result #emptyResultBox p {
   text-align: center;
   color: var(--slate300);
+  line-height: 140%;
 }
 @media (max-width: 850px) {
   .result #emptyResultBox {
