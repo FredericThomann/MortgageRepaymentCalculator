@@ -1,0 +1,420 @@
+// -------------------------- BASICS
+
+:root {
+  --lime: 61, 70%, 52%;
+  --red: hsl(4, 69%, 50%);
+  --white: hsl(0, 0%, 100%);
+  --slate100: hsl(202, 86%, 94%);
+  --slate300: hsl(203, 41%, 72%);
+  --slate500: hsl(200, 26%, 54%);
+  --slate700: hsl(200, 24%, 40%);
+  --slate900: hsl(202, 55%, 16%);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+}
+
+html, input {
+  font: 500 16px 'Plus Jakarta Sans', sans-serif;
+  color: var(--slate900);
+}
+
+body {
+  background-color: var(--slate100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+
+  @media (max-width: 850px) {
+    align-items: flex-start;
+  }
+}
+
+input, button {
+  cursor: pointer;
+}
+
+// -------------------------- CALCULATOR BOX
+
+.calculator {
+  background-color: var(--white);
+  display: flex;
+  max-width: 1008px;
+  margin: 20px;
+  border-radius: 26px;
+  overflow: hidden;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    max-width: 375px;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+// ------------- CALCULATION SECTION
+
+.calculation {
+  flex: 1;
+
+  .mortgage {
+    margin: 38px;
+
+    @media (max-width: 850px) {
+      margin: 32px 24px;
+    }
+
+// --- CALCULATION HEADER
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 2px 42px;
+
+      .title {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .clear input {
+        background-color: transparent;
+        border: none;
+        text-decoration: underline;
+        color: var(--slate500);
+      }
+
+      @media (max-width: 850px) {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 2px 26px;
+
+        .clear input {
+          margin-top: 10px;
+        }
+      }
+    }
+
+// --- CALCULATION INPUTS
+
+    &__entries {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+
+      .entry_1col {
+        width: 100%;
+      }
+
+      .entry_2col {
+        display: flex;
+        gap: 20px;
+
+        @media (max-width: 850px) {
+          flex-direction: column;
+          gap: 26px;
+        }
+      }
+
+      .mortgageInput {
+        position: relative;
+        width: 100%;
+      }
+
+      label {
+        color: var(--slate700);
+      }
+
+      .inputBox {
+        display: flex;
+        margin-top: 12px;
+        border: 1px solid var(--slate300);
+        border-radius: 6px;
+        overflow: hidden;
+        transition: 0.3s ease;
+    
+        .helperBox {
+          background-color: var(--slate100);
+          font-weight: 700;
+          padding: 12px 17px;
+          color: var(--slate700);
+          transition: 0.3s ease;
+        }
+
+        input {
+          background-color: transparent;
+          font-weight: 700;
+          font-size: 18px;
+          flex: 1;
+          border: none;
+          width: 100%;
+          padding: 12px 14px;
+        }
+
+        &:hover {
+          border-color: var(--slate900);
+        }
+
+        &:has(input:focus) {
+          border: 1px solid hsl(var(--lime));
+
+          .helperBox {
+            background-color: hsl(var(--lime));
+          }
+        }
+
+        &.error {
+          border: 1px solid var(--red);
+    
+          .helperBox {
+            background-color: var(--red);
+            color: var(--white);
+          }
+        }
+      }
+
+      .errorField {
+        display: none;
+        font-size: 14px;
+        margin: 14px 0 0;
+        color: var(--red);
+      }
+
+      .type {
+        gap: 14px;
+
+        & ~ .errorField {
+          margin-bottom: 16px;
+        }
+      }
+
+      .typeName {
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding-left: 56px;
+        margin: 12px 0;
+        border: 1px solid var(--slate500);
+        height: 49px;
+        cursor: pointer;
+        font-weight: 700;
+        letter-spacing: 1px;
+        user-select: none;
+        border-radius: 6px;
+        transition: 0.3s ease;
+
+        input {
+          position: absolute;
+          opacity: 0;
+        }
+
+        .checkmark {
+          position: absolute;
+          top: 14px;
+          left: 18px;
+          height: 20px;
+          width: 20px;
+          border: 1px solid var(--slate900);
+          border-radius: 50%;
+        }input:checked ~ .checkmark {
+          border: 1px solid hsl(var(--lime));
+          background-color: hsl(var(--lime));
+        }
+  
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+  
+        input:checked ~ .checkmark:after {
+          display: block;
+        }
+  
+        .checkmark:after {
+          top: 0;
+          left: 0;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: transparent;
+          border: 3px solid var(--white);
+        }
+
+        &:has(input:checked) {
+          border: 1px solid hsl(var(--lime));
+          background-color: hsla(var(--lime), 0.2);
+        }
+
+        &:hover {
+          border-color: hsl(var(--lime));
+        }
+      }
+    }
+
+// --- CALCULATION VALIDATION
+
+    &__validation {
+      margin-top: 30px;
+
+      button {
+        background-color: hsl(var(--lime));
+        font-weight: 700;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        max-width: 314px;
+        padding: 16px 0;
+        border: none;
+        border-radius: 28px;
+        transition: 0.3s ease;
+
+        &:hover {
+          background-color: hsla(var(--lime), 0.7);
+        }
+      }
+
+      @media (max-width: 850px) {
+        margin-top: 12px;
+
+        button {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// ------------- RESULT SECTION
+
+.result {
+  background-color: var(--slate900);
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  border-bottom-left-radius: 80px;
+
+// --- EMPTY RESULTS
+
+  #emptyResultBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 16px 0 20px;
+      color: var(--white);
+    }
+
+    p {
+      text-align: center;
+      color: var(--slate300);
+    }
+
+    @media (max-width: 850px) {
+      margin: 32px;
+    }
+  }
+
+// --- CALCULATION RESULTS
+
+  #fullResultBox {
+    display: none;
+  }
+
+  .fullResultBox {
+    display: none;
+    margin: 38px;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 2px 18px;
+
+      .title {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--white);
+      }
+    }
+
+    &__text {
+      line-height: 150%;
+      margin-bottom: 40px;
+      color: var(--slate300);
+
+      @media (max-width: 850px) {
+        margin-bottom: 22px;
+      }
+    }
+
+    &__repayment {
+      background-color: hsl(202, 56%, 12%);
+      border-top: 3px solid yellow;
+      border-radius: 12px;
+      padding: 30px 34px;
+
+      .resultBox {
+
+        &__monthRepay, &__totalRepay {
+          color: var(--slate300);
+        }
+
+        &__monthAmount {
+          font-size: 56px;
+          font-weight: 700;
+          padding: 10px 0 34px;
+          border-bottom: 1px solid var(--slate300);
+          color: hsl(var(--lime));
+
+          @media (max-width: 850px) {
+            font-size: 40px;
+            padding: 6px 0 20px;
+          }
+        }
+
+        &__totalRepay {
+          margin: 32px 0 8px;
+
+          @media (max-width: 850px) {
+            margin: 16px 0 8px;
+          }
+        }
+
+        &__totalAmount {
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--white);
+        }
+      }
+
+      @media (max-width: 850px) {
+        border-radius: 8px;
+        padding: 24px 20px;
+      }
+    }
+
+    @media (max-width: 850px) {
+      margin: 32px 22px;
+    }
+  }
+
+  @media (max-width: 850px) {
+    border-radius: 0;
+  }
+}
