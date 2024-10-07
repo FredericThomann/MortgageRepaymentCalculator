@@ -82,6 +82,7 @@ input, button {
   background-color: transparent;
   border: none;
   text-decoration: underline;
+  text-underline-offset: 3px;
   color: var(--slate500);
 }
 @media (max-width: 850px) {
