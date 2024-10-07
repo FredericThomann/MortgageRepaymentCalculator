@@ -1,1 +1,369 @@
-/*# sourceMappingURL=style.css.map */
+:root {
+  --lime: 61, 70%, 52%;
+  --red: hsl(4, 69%, 50%);
+  --white: hsl(0, 0%, 100%);
+  --slate100: hsl(202, 86%, 94%);
+  --slate300: hsl(203, 41%, 72%);
+  --slate500: hsl(200, 26%, 54%);
+  --slate700: hsl(200, 24%, 40%);
+  --slate900: hsl(202, 55%, 16%);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+}
+
+html, input {
+  font: 500 16px "Plus Jakarta Sans", sans-serif;
+  color: var(--slate900);
+}
+
+body {
+  background-color: var(--slate100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+@media (max-width: 850px) {
+  body {
+    align-items: flex-start;
+  }
+}
+
+input, button {
+  cursor: pointer;
+}
+
+.calculator {
+  background-color: var(--white);
+  display: flex;
+  max-width: 1008px;
+  margin: 20px;
+  border-radius: 26px;
+  overflow: hidden;
+}
+@media (max-width: 850px) {
+  .calculator {
+    flex-direction: column;
+    max-width: 375px;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+.calculation {
+  flex: 1;
+}
+.calculation .mortgage {
+  margin: 38px;
+}
+@media (max-width: 850px) {
+  .calculation .mortgage {
+    margin: 32px 24px;
+  }
+}
+.calculation .mortgage__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2px 42px;
+}
+.calculation .mortgage__header .title {
+  font-size: 24px;
+  font-weight: 700;
+}
+.calculation .mortgage__header .clear input {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  color: var(--slate500);
+}
+@media (max-width: 850px) {
+  .calculation .mortgage__header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 2px 26px;
+  }
+  .calculation .mortgage__header .clear input {
+    margin-top: 10px;
+  }
+}
+.calculation .mortgage__entries {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.calculation .mortgage__entries .entry_1col {
+  width: 100%;
+}
+.calculation .mortgage__entries .entry_2col {
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 850px) {
+  .calculation .mortgage__entries .entry_2col {
+    flex-direction: column;
+    gap: 26px;
+  }
+}
+.calculation .mortgage__entries .mortgageInput {
+  position: relative;
+  width: 100%;
+}
+.calculation .mortgage__entries label {
+  color: var(--slate700);
+}
+.calculation .mortgage__entries .inputBox {
+  display: flex;
+  margin-top: 12px;
+  border: 1px solid var(--slate300);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+.calculation .mortgage__entries .inputBox .helperBox {
+  background-color: var(--slate100);
+  font-weight: 700;
+  padding: 12px 17px;
+  color: var(--slate700);
+  transition: 0.3s ease;
+}
+.calculation .mortgage__entries .inputBox input {
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 18px;
+  flex: 1;
+  border: none;
+  width: 100%;
+  padding: 12px 14px;
+}
+.calculation .mortgage__entries .inputBox:hover {
+  border-color: var(--slate900);
+}
+.calculation .mortgage__entries .inputBox:has(input:focus) {
+  border: 1px solid hsl(var(--lime));
+}
+.calculation .mortgage__entries .inputBox:has(input:focus) .helperBox {
+  background-color: hsl(var(--lime));
+}
+.calculation .mortgage__entries .inputBox.error {
+  border: 1px solid var(--red);
+}
+.calculation .mortgage__entries .inputBox.error .helperBox {
+  background-color: var(--red);
+  color: var(--white);
+}
+.calculation .mortgage__entries .errorField {
+  display: none;
+  font-size: 14px;
+  margin: 14px 0 0;
+  color: var(--red);
+}
+.calculation .mortgage__entries .type {
+  gap: 14px;
+}
+.calculation .mortgage__entries .type ~ .errorField {
+  margin-bottom: 16px;
+}
+.calculation .mortgage__entries .typeName {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 56px;
+  margin: 12px 0;
+  border: 1px solid var(--slate500);
+  height: 49px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 1px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+.calculation .mortgage__entries .typeName input {
+  position: absolute;
+  opacity: 0;
+}
+.calculation .mortgage__entries .typeName .checkmark {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  height: 20px;
+  width: 20px;
+  border: 1px solid var(--slate900);
+  border-radius: 50%;
+}
+.calculation .mortgage__entries .typeName input:checked ~ .checkmark {
+  border: 1px solid hsl(var(--lime));
+  background-color: hsl(var(--lime));
+}
+.calculation .mortgage__entries .typeName .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.calculation .mortgage__entries .typeName input:checked ~ .checkmark:after {
+  display: block;
+}
+.calculation .mortgage__entries .typeName .checkmark:after {
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid var(--white);
+}
+.calculation .mortgage__entries .typeName:has(input:checked) {
+  border: 1px solid hsl(var(--lime));
+  background-color: hsla(var(--lime), 0.2);
+}
+.calculation .mortgage__entries .typeName:hover {
+  border-color: hsl(var(--lime));
+}
+.calculation .mortgage__validation {
+  margin-top: 30px;
+}
+.calculation .mortgage__validation button {
+  background-color: hsl(var(--lime));
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 314px;
+  padding: 16px 0;
+  border: none;
+  border-radius: 28px;
+  transition: 0.3s ease;
+}
+.calculation .mortgage__validation button:hover {
+  background-color: hsla(var(--lime), 0.7);
+}
+@media (max-width: 850px) {
+  .calculation .mortgage__validation {
+    margin-top: 12px;
+  }
+  .calculation .mortgage__validation button {
+    max-width: 100%;
+  }
+}
+
+.result {
+  background-color: var(--slate900);
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  border-bottom-left-radius: 80px;
+}
+.result #emptyResultBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+}
+.result #emptyResultBox .title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 16px 0 20px;
+  color: var(--white);
+}
+.result #emptyResultBox p {
+  text-align: center;
+  color: var(--slate300);
+}
+@media (max-width: 850px) {
+  .result #emptyResultBox {
+    margin: 32px;
+  }
+}
+.result #fullResultBox {
+  display: none;
+}
+.result .fullResultBox {
+  display: none;
+  margin: 38px;
+}
+.result .fullResultBox__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2px 18px;
+}
+.result .fullResultBox__header .title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+}
+.result .fullResultBox__text {
+  line-height: 150%;
+  margin-bottom: 40px;
+  color: var(--slate300);
+}
+@media (max-width: 850px) {
+  .result .fullResultBox__text {
+    margin-bottom: 22px;
+  }
+}
+.result .fullResultBox__repayment {
+  background-color: hsl(202, 56%, 12%);
+  border-top: 3px solid yellow;
+  border-radius: 12px;
+  padding: 30px 34px;
+}
+.result .fullResultBox__repayment .resultBox__monthRepay, .result .fullResultBox__repayment .resultBox__totalRepay {
+  color: var(--slate300);
+}
+.result .fullResultBox__repayment .resultBox__monthAmount {
+  font-size: 56px;
+  font-weight: 700;
+  padding: 10px 0 34px;
+  border-bottom: 1px solid var(--slate300);
+  color: hsl(var(--lime));
+}
+@media (max-width: 850px) {
+  .result .fullResultBox__repayment .resultBox__monthAmount {
+    font-size: 40px;
+    padding: 6px 0 20px;
+  }
+}
+.result .fullResultBox__repayment .resultBox__totalRepay {
+  margin: 32px 0 8px;
+}
+@media (max-width: 850px) {
+  .result .fullResultBox__repayment .resultBox__totalRepay {
+    margin: 16px 0 8px;
+  }
+}
+.result .fullResultBox__repayment .resultBox__totalAmount {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+}
+@media (max-width: 850px) {
+  .result .fullResultBox__repayment {
+    border-radius: 8px;
+    padding: 24px 20px;
+  }
+}
+@media (max-width: 850px) {
+  .result .fullResultBox {
+    margin: 32px 22px;
+  }
+}
+@media (max-width: 850px) {
+  .result {
+    border-radius: 0;
+  }
+}/*# sourceMappingURL=style.css.map */
