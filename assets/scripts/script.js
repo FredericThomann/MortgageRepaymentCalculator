@@ -1,4 +1,17 @@
-// ---------------------------- CALCULATE MORTGAGE & SHOW RESULT SECTION
+// ---------------------- FORMAT AMOUNT MORTGAGE
+
+function formatAmount() {
+  const amount = document.getElementById('mortgageAmount');
+  const unformatedAmount = amount.value.toString().replace(/[,]/g, '');
+  if(isNaN(+unformatedAmount) || +unformatedAmount <= 0) {
+    amount.value = '';
+  }
+  else {
+    amount.value = new Intl.NumberFormat('en-US').format(+unformatedAmount);
+  }
+}
+
+// ---------------------- CALCULATE MORTGAGE & SHOW RESULT SECTION
 
 document.querySelector('#calculateBtn').addEventListener('click', (event) => {
   event.preventDefault();
@@ -12,14 +25,14 @@ document.querySelector('#calculateBtn').addEventListener('click', (event) => {
   const amount = document.getElementById('mortgageAmount').value.trim().toString().replace(/[,]/g, '');
   const years = document.getElementById('mortgageTerm').value.trim();
   const rate = document.getElementById('interestRate').value.trim();
-  const repayment = (document.querySelector('input[name="mortgageType"]:checked') !== null) ? document.querySelector('input[name="mortgageType"]:checked').value :'null';
-  if(amount === '' || amount === 0) {
+  const repayment = (document.querySelector('input[name="mortgageType"]:checked') !== null) ? document.querySelector('input[name="mortgageType"]:checked').value : 'null';
+  if(amount === '' || amount <= 0) {
     errors.push('mortgageAmount');
   }
-  if(years === '' || years === 0) {
+  if(years === '' || years <= 0) {
     errors.push('mortgageTerm');
   }
-  if(rate === '' || rate === 0) {
+  if(rate === '' || rate <= 0) {
     errors.push('interestRate');
   }
   if(repayment === 'null') {
@@ -31,12 +44,12 @@ document.querySelector('#calculateBtn').addEventListener('click', (event) => {
     let totalInterest = totalAmount - amount;
     let averageMonthAmount = totalInterest / (years * 12);
     if(+repayment === 1) {
-      document.getElementById('monthAmount').innerHTML = '&pound;' + new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(+monthAmount.toFixed(2));
-      document.getElementById('totalAmount').innerHTML = '&pound;' + new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(+totalAmount.toFixed(2));
+      document.getElementById('monthAmount').innerHTML = '&pound;' + new Intl.NumberFormat('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(+monthAmount);
+      document.getElementById('totalAmount').innerHTML = '&pound;' + new Intl.NumberFormat('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(+totalAmount);
     }
     else if(+repayment === 2) {
-      document.getElementById('monthAmount').innerHTML = '&pound;' + new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(+averageMonthAmount.toFixed(2));
-      document.getElementById('totalAmount').innerHTML = '&pound;' + new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(+totalInterest.toFixed(2));
+      document.getElementById('monthAmount').innerHTML = '&pound;' + new Intl.NumberFormat('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(+averageMonthAmount);
+      document.getElementById('totalAmount').innerHTML = '&pound;' + new Intl.NumberFormat('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(+totalInterest);
     }
     document.getElementById('emptyResultBox').style.display = 'none';
     document.getElementById('fullResultBox').style.display = 'block';
@@ -51,7 +64,7 @@ document.querySelector('#calculateBtn').addEventListener('click', (event) => {
   }
 });
 
-// ---------------------------- HIDE RESULT SECTION
+// ---------------------- HIDE RESULT SECTION
 
 document.querySelector('#clearBtn').addEventListener('click', () => {
   document.querySelectorAll('.errorField').forEach(errorField => {
@@ -63,16 +76,3 @@ document.querySelector('#clearBtn').addEventListener('click', () => {
   document.getElementById('emptyResultBox').style.display = 'flex';
   document.getElementById('fullResultBox').style.display = 'none';
 });
-
-// ---------------------------- FORMAT AMOUNT MORTGAGE
-
-function formatAmount() {
-  const amount = document.getElementById('mortgageAmount');
-  const unformatedAmount = amount.value.toString().replace(/[,]/g, '');
-  if(isNaN(+unformatedAmount) || +unformatedAmount <= 0) {
-    amount.value = '';
-  }
-  else {
-    amount.value = new Intl.NumberFormat('en-US').format(+unformatedAmount);
-  }
-}
