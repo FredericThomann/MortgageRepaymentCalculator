@@ -9,7 +9,7 @@
 
   <!-- FAVICON -->
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-
+  
   <!-- TITLE -->
   <title>Frontend Mentor | Mortgage repayment calculator</title>
 
@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 
   <!-- STYLES -->
-   <link rel="stylesheet" href="./assets/styles/css/style.css">
+  <link rel="stylesheet" href="./assets/styles/css/style.css">
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
@@ -33,32 +33,32 @@
 
   <main class="calculator">
     <div class="calculation">
-      <form class="mortgage" method="post" action="index.html">
+      <form action="" class="mortgage">
         <div class="mortgage__header">
           <h1 class="title">Mortgage Calculator</h1>
           <div class="clear" id="clearBtn"><input type="reset" value="Clear All"></div>
         </div>
-        <div class="mortgage__entries">
-          <div class="entry_1col">
+        <div class="mortgage__data">
+          <div class="data_1col">
             <div class="mortgageInput mortgageAmount">
               <label for="mortgageAmount">Mortgage Amount</label>
-              <div class="inputBox"><div class="helperBox">&pound;</div><input type="text" pattern="[0-9]+([\.][0-9]+)?" id="mortgageAmount" name="mortgageAmount" onblur="formatAmount()"></div>
+              <div class="inputBox"><div class="helperBox">&pound;</div><input type="text" name="mortgageAmount" id="mortgageAmount" onblur="formatAmount()"></div>
               <div class="errorField">This field is required</div>
             </div>
           </div>
-          <div class="entry_2col">
+          <div class="data_2col">
             <div class="mortgageInput mortgageTerm">
               <label for="mortgageTerm">Mortgage Term</label>
-              <div class="inputBox"><input type="number" id="mortgageTerm" step="1" name="mortgageTerm"><div class="helperBox">years</div></div>
+              <div class="inputBox"><input type="number" name="mortgageTerm" id="mortgageTerm" step="1"><div class="helperBox">years</div></div>
               <div class="errorField">This field is required</div>
             </div>
             <div class="mortgageInput interestRate">
               <label for="interestRate">Interest Rate</label>
-              <div class="inputBox"><input type="number" step="0.01" id="interestRate" name="interestRate"><div class="helperBox">%</div></div>
+              <div class="inputBox"><input type="number" name="interestRate" id="interestRate" step="0.01"><div class="helperBox">&percnt;</div></div>
               <div class="errorField">This field is required</div>
             </div>
           </div>
-          <div class="entry_1col">
+          <div class="data_1col">
             <div class="mortgageInput mortgageType">
               <label class="type">Mortgage Type</label>
               <label class="typeName">Repayment
@@ -90,7 +90,8 @@
           <div class="title">Your results</div>
         </div>
         <div class="fullResultBox__text">
-          <p>Your results are shown below based on the information you provided. To adjust the results, edit the form and click “calculate repayments” again.</p>
+          <p>Your results are shown below based on the information you provided. 
+            To adjust the results, edit the form and click “calculate repayments” again.</p>
         </div>
         <div class="fullResultBox__repayment">
           <div class="resultBox">
