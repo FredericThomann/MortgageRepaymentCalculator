@@ -5,7 +5,7 @@
   --slate100: hsl(202, 86%, 94%);
   --slate300: hsl(203, 41%, 72%);
   --slate500: hsl(200, 26%, 54%);
-  --slate700: hsl(200, 24%, 40%);
+  --slate700: 200, 24%, 40%;
   --slate900: hsl(202, 55%, 16%);
 }
 
@@ -46,6 +46,7 @@ input, button {
   max-width: 1008px;
   margin: 20px;
   border-radius: 26px;
+  box-shadow: 0px 40px 80px -10px hsla(var(--slate700), 0.3);
   overflow: hidden;
 }
 @media (max-width: 850px) {
@@ -95,32 +96,32 @@ input, button {
     margin-top: 10px;
   }
 }
-.calculation .mortgage__entries {
+.calculation .mortgage__data {
   display: flex;
   flex-direction: column;
   gap: 26px;
 }
-.calculation .mortgage__entries .entry_1col {
+.calculation .mortgage__data .data_1col {
   width: 100%;
 }
-.calculation .mortgage__entries .entry_2col {
+.calculation .mortgage__data .data_2col {
   display: flex;
   gap: 20px;
 }
 @media (max-width: 850px) {
-  .calculation .mortgage__entries .entry_2col {
+  .calculation .mortgage__data .data_2col {
     flex-direction: column;
     gap: 26px;
   }
 }
-.calculation .mortgage__entries .mortgageInput {
+.calculation .mortgage__data .mortgageInput {
   position: relative;
   width: 100%;
 }
-.calculation .mortgage__entries label {
-  color: var(--slate700);
+.calculation .mortgage__data label {
+  color: hsl(var(--slate700));
 }
-.calculation .mortgage__entries .inputBox {
+.calculation .mortgage__data .inputBox {
   display: flex;
   margin-top: 12px;
   border: 1px solid var(--slate300);
@@ -128,14 +129,14 @@ input, button {
   overflow: hidden;
   transition: 0.3s ease;
 }
-.calculation .mortgage__entries .inputBox .helperBox {
+.calculation .mortgage__data .inputBox .helperBox {
   background-color: var(--slate100);
   font-weight: 700;
   padding: 12px 17px;
-  color: var(--slate700);
+  color: hsl(var(--slate700));
   transition: 0.3s ease;
 }
-.calculation .mortgage__entries .inputBox input {
+.calculation .mortgage__data .inputBox input {
   background-color: transparent;
   font-weight: 700;
   font-size: 18px;
@@ -144,35 +145,35 @@ input, button {
   width: 100%;
   padding: 12px 14px;
 }
-.calculation .mortgage__entries .inputBox:hover {
+.calculation .mortgage__data .inputBox:hover {
   border-color: var(--slate900);
 }
-.calculation .mortgage__entries .inputBox:has(input:focus) {
+.calculation .mortgage__data .inputBox:has(input:focus) {
   border: 1px solid hsl(var(--lime));
 }
-.calculation .mortgage__entries .inputBox:has(input:focus) .helperBox {
+.calculation .mortgage__data .inputBox:has(input:focus) .helperBox {
   background-color: hsl(var(--lime));
 }
-.calculation .mortgage__entries .inputBox.error {
+.calculation .mortgage__data .inputBox.error {
   border: 1px solid var(--red);
 }
-.calculation .mortgage__entries .inputBox.error .helperBox {
+.calculation .mortgage__data .inputBox.error .helperBox {
   background-color: var(--red);
   color: var(--white);
 }
-.calculation .mortgage__entries .errorField {
+.calculation .mortgage__data .errorField {
   display: none;
   font-size: 14px;
   margin: 14px 0 0;
   color: var(--red);
 }
-.calculation .mortgage__entries .type {
+.calculation .mortgage__data .type {
   gap: 14px;
 }
-.calculation .mortgage__entries .type ~ .errorField {
+.calculation .mortgage__data .type ~ .errorField {
   margin-bottom: 16px;
 }
-.calculation .mortgage__entries .typeName {
+.calculation .mortgage__data .typeName {
   display: flex;
   align-items: center;
   position: relative;
@@ -189,11 +190,11 @@ input, button {
   border-radius: 6px;
   transition: 0.3s ease;
 }
-.calculation .mortgage__entries .typeName input {
+.calculation .mortgage__data .typeName input {
   position: absolute;
   opacity: 0;
 }
-.calculation .mortgage__entries .typeName .checkmark {
+.calculation .mortgage__data .typeName .checkmark {
   position: absolute;
   top: 14px;
   left: 18px;
@@ -202,32 +203,32 @@ input, button {
   border: 1px solid var(--slate900);
   border-radius: 50%;
 }
-.calculation .mortgage__entries .typeName input:checked ~ .checkmark {
+.calculation .mortgage__data .typeName input:checked ~ .checkmark {
   border: 1px solid hsl(var(--lime));
   background-color: hsl(var(--lime));
 }
-.calculation .mortgage__entries .typeName .checkmark:after {
+.calculation .mortgage__data .typeName .checkmark::after {
   content: "";
   position: absolute;
   display: none;
 }
-.calculation .mortgage__entries .typeName input:checked ~ .checkmark:after {
+.calculation .mortgage__data .typeName input:checked ~ .checkmark::after {
   display: block;
 }
-.calculation .mortgage__entries .typeName .checkmark:after {
+.calculation .mortgage__data .typeName .checkmark::after {
   top: 0;
   left: 0;
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: transparent;
+  background-color: transparent;
   border: 3px solid var(--white);
 }
-.calculation .mortgage__entries .typeName:has(input:checked) {
+.calculation .mortgage__data .typeName:has(input:checked) {
   border: 1px solid hsl(var(--lime));
   background-color: hsla(var(--lime), 0.2);
 }
-.calculation .mortgage__entries .typeName:hover {
+.calculation .mortgage__data .typeName:hover {
   border-color: hsl(var(--lime));
 }
 .calculation .mortgage__validation {
@@ -320,7 +321,7 @@ input, button {
 }
 .result .fullResultBox__repayment {
   background-color: hsl(202, 56%, 12%);
-  border-top: 3px solid yellow;
+  border-top: 3px solid hsl(var(--lime));
   border-radius: 12px;
   padding: 30px 34px;
 }
