@@ -1,4 +1,4 @@
-// -------------------------- BASICS
+// ------------------------------- BASICS
 
 :root {
   --lime: 61, 70%, 52%;
@@ -7,7 +7,7 @@
   --slate100: hsl(202, 86%, 94%);
   --slate300: hsl(203, 41%, 72%);
   --slate500: hsl(200, 26%, 54%);
-  --slate700: hsl(200, 24%, 40%);
+  --slate700: 200, 24%, 40%;
   --slate900: hsl(202, 55%, 16%);
 }
 
@@ -41,7 +41,7 @@ input, button {
   cursor: pointer;
 }
 
-// -------------------------- CALCULATOR BOX
+// ------------------------------- CALCULATOR BOX
 
 .calculator {
   background-color: var(--white);
@@ -49,6 +49,7 @@ input, button {
   max-width: 1008px;
   margin: 20px;
   border-radius: 26px;
+  box-shadow: 0px 40px 80px -10px hsla(var(--slate700), 0.3);
   overflow: hidden;
 
   @media (max-width: 850px) {
@@ -59,7 +60,7 @@ input, button {
   }
 }
 
-// ------------- CALCULATION SECTION
+// ----------- CALCULATION SECTION
 
 .calculation {
   flex: 1;
@@ -105,16 +106,16 @@ input, button {
 
 // --- CALCULATION INPUTS
 
-    &__entries {
+    &__data {
       display: flex;
       flex-direction: column;
       gap: 26px;
 
-      .entry_1col {
+      .data_1col {
         width: 100%;
       }
 
-      .entry_2col {
+      .data_2col {
         display: flex;
         gap: 20px;
 
@@ -130,7 +131,7 @@ input, button {
       }
 
       label {
-        color: var(--slate700);
+        color: hsl(var(--slate700));
       }
 
       .inputBox {
@@ -140,12 +141,12 @@ input, button {
         border-radius: 6px;
         overflow: hidden;
         transition: 0.3s ease;
-    
+
         .helperBox {
           background-color: var(--slate100);
           font-weight: 700;
           padding: 12px 17px;
-          color: var(--slate700);
+          color: hsl(var(--slate700));
           transition: 0.3s ease;
         }
 
@@ -173,7 +174,7 @@ input, button {
 
         &.error {
           border: 1px solid var(--red);
-    
+
           .helperBox {
             background-color: var(--red);
             color: var(--white);
@@ -224,28 +225,30 @@ input, button {
           width: 20px;
           border: 1px solid var(--slate900);
           border-radius: 50%;
-        }input:checked ~ .checkmark {
+        }
+
+        input:checked ~ .checkmark {
           border: 1px solid hsl(var(--lime));
           background-color: hsl(var(--lime));
         }
-  
-        .checkmark:after {
-          content: "";
+
+        .checkmark::after {
+          content: '';
           position: absolute;
           display: none;
         }
-  
-        input:checked ~ .checkmark:after {
+
+        input:checked ~ .checkmark::after {
           display: block;
         }
-  
-        .checkmark:after {
+
+        .checkmark::after {
           top: 0;
           left: 0;
           width: 18px;
           height: 18px;
           border-radius: 50%;
-          background: transparent;
+          background-color: transparent;
           border: 3px solid var(--white);
         }
 
@@ -296,7 +299,7 @@ input, button {
   }
 }
 
-// ------------- RESULT SECTION
+// ----------- RESULT SECTION
 
 .result {
   background-color: var(--slate900);
@@ -367,7 +370,7 @@ input, button {
 
     &__repayment {
       background-color: hsl(202, 56%, 12%);
-      border-top: 3px solid yellow;
+      border-top: 3px solid hsl(var(--lime));
       border-radius: 12px;
       padding: 30px 34px;
 
